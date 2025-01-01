@@ -22,8 +22,8 @@ const Login = () => {
             password
         }).then((res) => {
             console.log(res.data)
-
             localStorage.setItem('token', res.data.token)
+            localStorage.setItem('user', JSON.stringify(res.data))
             setUser(res.data.user)
 
             navigate('/')
