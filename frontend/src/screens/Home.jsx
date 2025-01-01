@@ -39,6 +39,18 @@ const Home = () => {
       });
   }, []);
 
+  function logout() {
+    // Add your logout logic here
+    axios.get("/users/logout").then((res) => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        navigate("/login");
+    }
+    ).catch((err) => {
+      console.log(err);
+    });
+  }
+
   return (
     <main className="p-4">
       <div className="projects flex gap-3">
@@ -78,12 +90,7 @@ const Home = () => {
 
         <div className="mt-4 align-self-end">
           <button
-            onClick={() => {
-              // Add your logout logic here
-              localStorage.removeItem("token");
-              localStorage.removeItem("user");
-              navigate("/login");
-            }}
+            onClick={logout}
             className="px-4 py-2 bg-red-600 text-white rounded-md"
           >
             Logout
